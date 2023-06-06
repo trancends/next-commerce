@@ -21,6 +21,7 @@ const getProducts = async () => {
         unit_amount: prices.data[0].unit_amount,
         image: product.images[0],
         currency: prices.data[0].currency,
+        description: product.description,
         metadata: { features },
       };
     })

@@ -11,7 +11,7 @@ export default function Nav({ user }: Session) {
       <ul className="flex items-center gap-12">
         <li>Products</li>
         {!user && (
-          <li className="bg-teal-600 text-white py-2 px-4 rounded-md">
+          <li className="bg-teal-600 text-white py-2 px-4 rounded-md ">
             <button onClick={() => signIn()}>Sign in</button>
           </li>
         )}
@@ -26,7 +26,7 @@ export default function Nav({ user }: Session) {
                 className="rounded-full"
               />
             </li>
-            <li>Dashboard</li>
+            {/* <li>Dashboard</li> */}
           </div>
         )}
       </ul>
