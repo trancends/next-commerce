@@ -5,6 +5,7 @@ import { useCartStore } from "@/store";
 import formatPrice from "@/util/PriceFormat";
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import basket from "@/public/basket.png";
+import { motion } from "framer-motion";
 
 export default function Cart() {
   const cartStore = useCartStore();
@@ -15,17 +16,21 @@ export default function Cart() {
   }, 0);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={() => cartStore.toggleCart()}
       className="fixed left-0 top-0 h-screen w-full bg-black/25"
     >
-      <div
+      <motion.div
+        layout
         onClick={(e) => e.stopPropagation()}
         className="absolute right-0 top-0 h-screen w-1/3 overflow-scroll bg-white p-12"
       >
         <h1>Here's your shopping list 📜 </h1>
         {cartStore.cart.map((item) => (
-          <div className="flex gap-4 py-4">
+          <motion.div layout key={item.id} className="flex gap-4 py-4">
             <Image
               src={item.image}
               width={120}
@@ -69,22 +74,30 @@ export default function Cart() {
                 {item.unit_amount && formatPrice(item.unit_amount)}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
         {/* Checkout and total */}
-        <p>Total: {formatPrice(totalPrice)}</p>
+
         {cartStore.cart.length > 0 && (
-          <button className="mt-4 w-full rounded-md bg-teal-700 py-2 text-white">
-            Checkout
-          </button>
+          <motion.div layout>
+            <p>Total: {formatPrice(totalPrice)}</p>
+            <button className="mt-4 w-full rounded-md bg-teal-700 py-2 text-white">
+              Checkout
+            </button>
+          </motion.div>
         )}
         {!cartStore.cart.length && (
-          <div className="flex flex-col items-center gap-12 pt-56 text-2xl font-medium opacity-75">
+          <motion.div
+            animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
+            initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+            exit={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+            className="flex flex-col items-center gap-12 pt-56 text-2xl font-medium opacity-75"
+          >
             <h1>Uhhh... it's empty 🥲</h1>
             <Image src={basket} alt="empty cart" width={200} height={200} />
-          </div>
+          </motion.div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

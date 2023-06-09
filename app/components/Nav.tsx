@@ -7,6 +7,7 @@ import Link from "next/link";
 import Cart from "./Cart";
 import { useCartStore } from "@/store";
 import { AiFillShopping } from "react-icons/ai";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Nav({ user }: Session) {
   const cartStore = useCartStore();
@@ -24,9 +25,18 @@ export default function Nav({ user }: Session) {
           className="relative flex cursor-pointer items-center text-3xl"
         >
           <AiFillShopping />
-          <span className="absolute bottom-4 left-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-700 text-sm font-bold text-white">
-            {cartStore.cart.length}
-          </span>
+          <AnimatePresence>
+            {cartStore.cart.length > 0 && (
+              <motion.span
+                animate={{ scale: 1 }}
+                initial={{ scale: 0 }}
+                exit={{ scale: 0 }}
+                className="absolute bottom-4 left-4 flex h-5 w-5 items-center justify-center rounded-full bg-teal-700 text-sm font-bold text-white"
+              >
+                {cartStore.cart.length}
+              </motion.span>
+            )}
+          </AnimatePresence>
         </li>
         {!user && (
           <li className="rounded-md bg-teal-600 px-4 py-2 text-white">
@@ -47,7 +57,7 @@ export default function Nav({ user }: Session) {
           </div>
         )}
       </ul>
-      {cartStore.isOpen && <Cart />}
+      <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
     </nav>
   );
 }
