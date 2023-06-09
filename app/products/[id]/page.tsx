@@ -19,7 +19,7 @@ export default async function Product({ searchParams }: SearchParamType) {
         <p className="py-2">{searchParams.description}</p>
         <p className="py-2">{searchParams.features}</p>
         <div>
-          <p className="text-teal-700 ">
+          <p className="font-bold text-teal-700">
             {searchParams.unit_amount && formatPrice(searchParams.unit_amount)}
           </p>
           <AddCart {...searchParams} />
