@@ -5,7 +5,7 @@ import AddCart from "./AddCart";
 
 export default async function Product({ searchParams }: SearchParamType) {
   return (
-    <div className="grid items-center justify-between gap-16 md:grid-cols-2 lg:grid-cols-2">
+    <div className="grid items-center justify-between justify-items-center gap-16 md:grid-cols-2">
       <Image
         src={searchParams.image}
         alt={searchParams.name}

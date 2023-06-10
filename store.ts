@@ -8,6 +8,10 @@ type CartState = {
   toggleCart: () => void;
   addProduct: (item: AddCartType) => void;
   removeProduct: (item: AddCartType) => void;
+  paymentIntent: string;
+  setPaymentIntent: (val: string) => void;
+  onCheckout: string;
+  setCheckout: (val: string) => void;
 };
 
 export const useCartStore = create<CartState>()(
@@ -15,6 +19,10 @@ export const useCartStore = create<CartState>()(
     (set) => ({
       cart: [],
       isOpen: false,
+      paymentIntent: "",
+      setPaymentIntent: (val) => set((state) => ({ paymentIntent: val })),
+      onCheckout: "cart",
+      setCheckout: (val) => set((state) => ({ onCheckout: val })),
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
       addProduct: (item) =>
         set((state) => {
@@ -54,6 +62,7 @@ export const useCartStore = create<CartState>()(
             return { cart: filteredCart };
           }
         }),
+      //  fix the error below please
     }),
     { name: "cart-store" }
   )
