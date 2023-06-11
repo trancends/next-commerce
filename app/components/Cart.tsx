@@ -30,9 +30,23 @@ export default function Cart() {
         onClick={(e) => e.stopPropagation()}
         className="absolute right-0 top-0 h-screen w-full overflow-scroll bg-white p-12 lg:w-1/3"
       >
-        <button onClick={() => cartStore.toggleCart()} className="pb-5 text-sm">
-          Back to store 🏃
-        </button>
+        {cartStore.onCheckout === "cart" && (
+          <button
+            onClick={() => cartStore.toggleCart()}
+            className="pb-5 text-sm"
+          >
+            Back to store 🏃
+          </button>
+        )}
+
+        {cartStore.onCheckout === "checkout" && (
+          <button
+            onClick={() => cartStore.setCheckout("cart")}
+            className="pb-5 text-sm"
+          >
+            Check your cart 🛒
+          </button>
+        )}
 
         {/* Cart items */}
         {cartStore.onCheckout === "cart" && (
@@ -89,7 +103,7 @@ export default function Cart() {
         )}
         {/* Checkout and total */}
 
-        {cartStore.cart.length > 0 && (
+        {cartStore.cart.length > 0 && cartStore.onCheckout === "cart" ? (
           <motion.div layout>
             <p>Total: {formatPrice(totalPrice)}</p>
             <button
@@ -99,7 +113,7 @@ export default function Cart() {
               Checkout
             </button>
           </motion.div>
-        )}
+        ) : null}
 
         {/* Checkout Form */}
         {cartStore.onCheckout === "checkout" && <Checkout />}
