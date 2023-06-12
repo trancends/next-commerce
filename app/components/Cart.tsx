@@ -5,8 +5,9 @@ import { useCartStore } from "@/store";
 import formatPrice from "@/util/PriceFormat";
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import basket from "@/public/basket.png";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Checkout from "./Checkout";
+import OrderConfirmed from "./OrderConfirmed";
 
 export default function Cart() {
   const cartStore = useCartStore();
@@ -117,18 +118,21 @@ export default function Cart() {
 
         {/* Checkout Form */}
         {cartStore.onCheckout === "checkout" && <Checkout />}
+        {cartStore.onCheckout === "success" && <OrderConfirmed />}
 
-        {!cartStore.cart.length && (
-          <motion.div
-            animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
-            initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
-            exit={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
-            className="flex flex-col items-center gap-12 pt-56 text-2xl font-medium opacity-75"
-          >
-            <h1>Uhhh... it's empty 🥲</h1>
-            <Image src={basket} alt="empty cart" width={200} height={200} />
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {!cartStore.cart.length && cartStore.onCheckout === "cart" && (
+            <motion.div
+              animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
+              initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+              exit={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+              className="flex flex-col items-center gap-12 pt-56 text-2xl font-medium opacity-75"
+            >
+              <h1>Uhhh... it's empty 🥲</h1>
+              <Image src={basket} alt="empty cart" width={200} height={200} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </motion.div>
   );

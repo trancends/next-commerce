@@ -98,7 +98,7 @@ export default async function handler(
 
     orderData.paymentIntentID = paymentIntent.id;
     const newOrder = await prisma.order.create({ data: orderData });
-    console.log(newOrder);
+    // console.log(newOrder);
     res.status(200).json({ paymentIntent });
   }
 }

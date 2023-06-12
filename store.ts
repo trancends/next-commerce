@@ -12,6 +12,7 @@ type CartState = {
   setPaymentIntent: (val: string) => void;
   onCheckout: string;
   setCheckout: (val: string) => void;
+  clearCart: () => void;
 };
 
 export const useCartStore = create<CartState>()(
@@ -24,6 +25,7 @@ export const useCartStore = create<CartState>()(
       onCheckout: "cart",
       setCheckout: (val) => set((state) => ({ onCheckout: val })),
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
+
       addProduct: (item) =>
         set((state) => {
           const existingItem = state.cart.find(
@@ -62,7 +64,7 @@ export const useCartStore = create<CartState>()(
             return { cart: filteredCart };
           }
         }),
-      //  fix the error below please
+      clearCart: () => set({ cart: [] }),
     }),
     { name: "cart-store" }
   )
