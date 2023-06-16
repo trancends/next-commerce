@@ -22,6 +22,7 @@ export default async function handler(
       const orders = await prisma.order.findMany({
         where: {
           userId: user?.user?.id,
+          status: "complete",
         },
         include: {
           products: true,
