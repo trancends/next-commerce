@@ -2,6 +2,7 @@
 // Hydration function component
 
 import { ReactNode, useEffect, useState } from "react";
+import { useThemeStore } from "@/store";
 
 /**
  * Renders the children components after NextJs rehydration completes, showing a loading
@@ -13,10 +14,20 @@ import { ReactNode, useEffect, useState } from "react";
 
 export default function Hydrate({ children }: { children: ReactNode }) {
   const [isHydrated, setHydrated] = useState(false);
-
+  const themeStore = useThemeStore();
   // Wait till NextJs rehydration completes
   useEffect(() => {
     setHydrated(true);
   }, []);
-  return <>{isHydrated ? <>{children}</> : <div>Loading...</div>}</>;
+  return (
+    <>
+      {isHydrated ? (
+        <div data-theme={themeStore.mode} className=" px-4  lg:px-20">
+          {children}
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
+    </>
+  );
 }
