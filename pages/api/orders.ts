@@ -1,10 +1,8 @@
 import Stripe from "stripe";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/util/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
-
-const prisma = new PrismaClient();
 
 export default async function handler(
   req: NextApiRequest,

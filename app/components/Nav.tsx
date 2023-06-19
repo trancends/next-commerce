@@ -54,7 +54,8 @@ export default function Nav({ user }: Session) {
                 width={48}
                 height={48}
                 alt={user?.name as string}
-                className="rounded-full"
+                className=" w-auto rounded-full"
+                priority={true}
               />
               <ul
                 tabIndex={0}

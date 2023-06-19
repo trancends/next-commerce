@@ -31,7 +31,7 @@ export default function OrderConfirmed() {
       <div className="rounded-md px-12 text-center">
         <h1 className="text-xl font-medium">Your order has been placed 🚀</h1>
         <h2 className="my-4 text-sm">Check your email for the receipt.</h2>
-        <Image src={vibing} className="py-8" alt="vibing" />
+        <Image src={vibing} className="py-8" alt="vibing" priority={true}/>
 
         <div className="flex items-center justify-center gap-12">
           <Link href={"/dashboard"}>

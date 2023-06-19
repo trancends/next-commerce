@@ -64,7 +64,7 @@ export default function Cart() {
                   width={120}
                   height={120}
                   alt={item.name}
-                  className="h-24 rounded-md"
+                  className=" w-auto rounded-md"
                 />
                 <div>
                   <h2>{item.name}</h2>
@@ -133,7 +133,14 @@ export default function Cart() {
               className="flex flex-col items-center gap-12 pt-56 text-2xl font-medium opacity-75"
             >
               <h1>Uhhh... it's empty 🥲</h1>
-              <Image src={basket} alt="empty cart" width={200} height={200} />
+              <Image
+                src={basket}
+                alt="empty cart"
+                width={200}
+                height={200}
+                priority={true}
+                className="h-auto w-auto"
+              />
             </motion.div>
           )}
         </AnimatePresence>
