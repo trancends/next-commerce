@@ -24,7 +24,7 @@ export default function Hydrate({ children }: { children: ReactNode }) {
       {isHydrated ? (
         <div
           data-theme={themeStore.mode}
-          className=" px-4  font-roboto lg:px-20"
+          className=" h-full px-4 font-roboto lg:px-20"
         >
           {children}
         </div>
