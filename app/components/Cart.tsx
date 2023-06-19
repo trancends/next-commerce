@@ -29,7 +29,7 @@ export default function Cart() {
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="absolute right-0 top-0 h-screen w-full overflow-scroll bg-white p-12 lg:w-1/3"
+        className="absolute right-0 top-0 h-screen w-full overflow-scroll bg-base-300 p-12 lg:w-1/3"
       >
         {cartStore.onCheckout === "cart" && (
           <button
@@ -54,7 +54,11 @@ export default function Cart() {
           <>
             <h1>Here's your shopping list 📜 </h1>
             {cartStore.cart.map((item) => (
-              <motion.div layout key={item.id} className="flex gap-4 py-4">
+              <motion.div
+                layout
+                key={item.id}
+                className="my-4 flex gap-4 rounded-lg bg-base-100 p-4 py-4"
+              >
                 <Image
                   src={item.image}
                   width={120}
