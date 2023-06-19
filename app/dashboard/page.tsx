@@ -1,6 +1,5 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import formatPrice from "@/util/PriceFormat";
-import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { prisma } from "@/util/prisma";
@@ -14,9 +13,13 @@ const fetchOrders = async () => {
   const orders = await prisma.order.findMany({
     where: {
       userId: user?.user?.id,
+      status: "complete"
     },
     include: {
       products: true,
+    },
+    orderBy: {
+      createdDate: "desc",
     },
   });
 

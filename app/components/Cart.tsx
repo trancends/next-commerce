@@ -29,7 +29,7 @@ export default function Cart() {
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="absolute right-0 top-0 h-screen w-full overflow-scroll bg-base-300 p-12 lg:w-1/3"
+        className="absolute right-0 top-0 h-screen w-full overflow-scroll bg-base-300 p-8 lg:w-1/3"
       >
         {cartStore.onCheckout === "cart" && (
           <button
@@ -64,7 +64,7 @@ export default function Cart() {
                   width={120}
                   height={120}
                   alt={item.name}
-                  className=" w-auto rounded-md"
+                  className=" h-24 w-auto rounded-md"
                 />
                 <div>
                   <h2>{item.name}</h2>

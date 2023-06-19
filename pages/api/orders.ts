@@ -20,14 +20,9 @@ export default async function handler(
       const orders = await prisma.order.findMany({
         where: {
           userId: user?.user?.id,
-          status: "complete",
         },
-
         include: {
           products: true,
-        },
-        orderBy: {
-          createdDate: "desc",
         },
       });
       res.status(200).json(orders);
