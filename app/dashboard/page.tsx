@@ -25,7 +25,6 @@ const fetchOrders = async () => {
 
 export default async function Dashboard() {
   const orders = await fetchOrders();
-
   if (orders === null)
     return <div>You need to be logged in to view your orders</div>;
   if (orders.length === 0) {
@@ -40,7 +39,7 @@ export default async function Dashboard() {
       <h1>Your Orders: </h1>
       <div className="font-medium">
         {orders.map((order) => (
-          <div key={order.id} className="my-4 rounded-lg p-8">
+          <div key={order.id} className="my-4 rounded-lg bg-base-200 p-8">
             <h2>Order reference: {order.id}</h2>
             <p>
               Time: {new Date(order.createdDate).toLocaleDateString()} -{" "}

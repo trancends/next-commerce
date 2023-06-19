@@ -14,17 +14,22 @@ export default function AddCart({
   const cartStore = useCartStore();
   const [added, setAdded] = useState(false);
 
-  const handdleAddToCart = () => {};
+  const handdleAddToCart = () => {
+    cartStore.addProduct({ id, name, image, unit_amount, quantity });
+    setAdded(true);
+    setTimeout(() => {
+      setAdded(false);
+    }, 500);
+  };
 
   return (
     <>
       <button
-        onClick={() => {
-          cartStore.addProduct({ id, name, image, unit_amount, quantity });
-        }}
-        className="my-4 rounded-md bg-teal-700 px-6 py-2 font-medium text-white"
+        onClick={handdleAddToCart}
+        disabled={added}
+        className="btn-primary btn my-4 w-full"
       >
-        Add to cart
+        {added ? "Added to cart" : "Add to cart"}
       </button>
     </>
   );

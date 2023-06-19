@@ -14,7 +14,7 @@ export default function Product({
   const { features } = metadata;
 
   return (
-    <div className="text-gray-700">
+    <div>
       <Link
         href={{
           pathname: `/products/${id}`,
@@ -26,12 +26,12 @@ export default function Product({
           alt={name}
           width={384}
           height={384}
-          className="w-full h-96 object-cover rounded-lg"
+          className="h-96 w-full rounded-lg object-cover"
         />
       </Link>
-      <div className="font-medium py-2">
+      <div className="py-2 font-medium">
         <h1>{name}</h1>
-        <h2 className="text-sm ">
+        <h2 className="text-sm text-primary">
           {unit_amount !== null ? formatPrice(unit_amount) : "N/A"}
         </h2>
       </div>

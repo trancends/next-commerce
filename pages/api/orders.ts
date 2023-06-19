@@ -24,8 +24,12 @@ export default async function handler(
           userId: user?.user?.id,
           status: "complete",
         },
+
         include: {
           products: true,
+        },
+        orderBy: {
+          createdDate: "desc",
         },
       });
       res.status(200).json(orders);
