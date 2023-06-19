@@ -56,7 +56,7 @@ export default async function Dashboard() {
               </span>
             </p>
             <p className="font-medium">Total: {formatPrice(order.amount)}</p>
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-3 md:grid-cols-2">
               {order.products.map((product) => (
                 <div className="py-2" key={product.id}>
                   <h2 className="py-2">Product: {product.name}</h2>

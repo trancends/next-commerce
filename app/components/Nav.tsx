@@ -1,7 +1,7 @@
 "use client";
 
 import { Session } from "next-auth";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import Cart from "./Cart";
@@ -44,19 +44,45 @@ export default function Nav({ user }: Session) {
           </li>
         )}
         {user && (
-          <div>
-            <Link href={"/dashboard"}>
-              <li>
-                <Image
-                  src={user?.image as string}
-                  width={48}
-                  height={48}
-                  alt={user?.name as string}
-                  className="rounded-full"
-                />
-              </li>
-            </Link>
-          </div>
+          <li>
+            <div className="dropdown-end dropdown cursor-pointer">
+              <Image
+                tabIndex={0}
+                src={user?.image as string}
+                width={48}
+                height={48}
+                alt={user?.name as string}
+                className="rounded-full"
+              />
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu rounded-box w-52 bg-base-100 p-2 shadow"
+              >
+                <li>
+                  <Link
+                    href="/dashboard"
+                    onClick={() => {
+                      if (document.activeElement instanceof HTMLAnchorElement) {
+                        document.activeElement.blur();
+                      }
+                    }}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li
+                  onClick={() => {
+                    signOut();
+                    if (document.activeElement instanceof HTMLAnchorElement) {
+                      document.activeElement.blur();
+                    }
+                  }}
+                >
+                  <span>Sign Out</span>
+                </li>
+              </ul>
+            </div>
+          </li>
         )}
       </ul>
       <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
