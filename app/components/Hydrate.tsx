@@ -22,7 +22,10 @@ export default function Hydrate({ children }: { children: ReactNode }) {
   return (
     <>
       {isHydrated ? (
-        <div data-theme={themeStore.mode} className=" px-4  lg:px-20">
+        <div
+          data-theme={themeStore.mode}
+          className=" px-4  font-roboto lg:px-20"
+        >
           {children}
         </div>
       ) : (
