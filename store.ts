@@ -6,13 +6,13 @@ type CartState = {
   isOpen: boolean;
   cart: AddCartType[];
   toggleCart: () => void;
+  clearCart: () => void;
   addProduct: (item: AddCartType) => void;
   removeProduct: (item: AddCartType) => void;
   paymentIntent: string;
-  setPaymentIntent: (val: string) => void;
   onCheckout: string;
+  setPaymentIntent: (val: string) => void;
   setCheckout: (val: string) => void;
-  clearCart: () => void;
 };
 
 export const useCartStore = create<CartState>()(
@@ -21,11 +21,8 @@ export const useCartStore = create<CartState>()(
       cart: [],
       isOpen: false,
       paymentIntent: "",
-      setPaymentIntent: (val) => set((state) => ({ paymentIntent: val })),
       onCheckout: "cart",
-      setCheckout: (val) => set((state) => ({ onCheckout: val })),
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
-
       addProduct: (item) =>
         set((state) => {
           const existingItem = state.cart.find(
@@ -45,7 +42,7 @@ export const useCartStore = create<CartState>()(
         }),
       removeProduct: (item) =>
         set((state) => {
-          // Check if the item exists then remove quantity - 1
+          //Check if the item exists and remove quantity - 1
           const existingItem = state.cart.find(
             (cartItem) => cartItem.id === item.id
           );
@@ -58,13 +55,16 @@ export const useCartStore = create<CartState>()(
             });
             return { cart: updatedCart };
           } else {
+            //Remove item from cart
             const filteredCart = state.cart.filter(
               (cartItem) => cartItem.id !== item.id
             );
             return { cart: filteredCart };
           }
         }),
-      clearCart: () => set({ cart: [] }),
+      setPaymentIntent: (val) => set((state) => ({ paymentIntent: val })),
+      setCheckout: (val) => set((state) => ({ onCheckout: val })),
+      clearCart: () => set((state) => ({ cart: [] })),
     }),
     { name: "cart-store" }
   )
