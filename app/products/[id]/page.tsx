@@ -23,6 +23,7 @@ export default async function Product({ searchParams }: SearchParamType) {
           <p className="font-bold text-primary">
             {searchParams.unit_amount && formatPrice(searchParams.unit_amount)}
           </p>
+          console.log("search params: ",searchParams);
           <AddCart {...searchParams} />
         </div>
       </div>
