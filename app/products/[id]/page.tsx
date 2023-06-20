@@ -3,8 +3,11 @@ import formatPrice from "@/util/PriceFormat";
 import Image from "next/image";
 import AddCart from "./AddCart";
 
-export default async function Product({ searchParams }: SearchParamType) {
-  console.log("search params: ", searchParams.id);
+export default async function Product({
+  params,
+  searchParams,
+}: SearchParamType) {
+  console.log("search params: ", params);
   return (
     <div className="grid items-center justify-between justify-items-center gap-16 md:grid-cols-2">
       <Image
