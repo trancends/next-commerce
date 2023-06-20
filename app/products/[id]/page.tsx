@@ -4,7 +4,7 @@ import Image from "next/image";
 import AddCart from "./AddCart";
 
 export default async function Product({ searchParams }: SearchParamType) {
-  console.log("search params: ", searchParams);
+  console.log("search params: ", searchParams.id);
   return (
     <div className="grid items-center justify-between justify-items-center gap-16 md:grid-cols-2">
       <Image
