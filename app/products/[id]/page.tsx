@@ -8,6 +8,7 @@ export default async function Product({
   searchParams,
 }: SearchParamType) {
   console.log("search params: ", params);
+  searchParams.id = params.id;
   return (
     <div className="grid items-center justify-between justify-items-center gap-16 md:grid-cols-2">
       <Image
@@ -27,6 +28,7 @@ export default async function Product({
           <p className="font-bold text-primary">
             {searchParams.unit_amount && formatPrice(searchParams.unit_amount)}
           </p>
+
           <AddCart {...searchParams} />
         </div>
       </div>
